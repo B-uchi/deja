@@ -1,0 +1,86 @@
+.TH DEJA 1 "July 2026" "deja 0.2.0" "User Commands"
+.SH NAME
+deja \- the clipboard time machine
+.SH SYNOPSIS
+.B deja
+.RI [ command ]
+.RI [ options ]
+.SH DESCRIPTION
+.B deja
+records everything you copy to a local SQLite database and makes it
+searchable from the command line or a GTK4 popup. A background daemon
+watches the clipboard, event-driven and windowless: natively via the
+Wayland data-control protocol where the compositor ships it, through
+the XWayland bridge (GDK/XFixes) on GNOME, or via GDK on plain X11.
+All data stays on your machine.
+.PP
+Running
+.B deja
+with no command is equivalent to
+.BR "deja list" .
+.SH COMMANDS
+.TP
+.BR list ", " ls " [\-n \fIN\fR] [\-p]"
+Show recent clipboard history. \-p lists pinned entries only.
+.TP
+.BR find ", " search " \fIwords\fR..."
+Full-text search with prefix matching.
+.TP
+.B show \fIid\fR [\-\-raw]
+Print one entry in full. Output is raw (content only) when piped.
+.TP
+.BR copy ", " cp " \fIid\fR"
+Put an old entry back on the clipboard.
+.TP
+.BR pin " \fIid\fR, " unpin " \fIid\fR"
+Pinned entries are never pruned and sort first.
+.TP
+.B rm \fIid\fR...
+Delete entries.
+.TP
+.B purge [\-\-days \fIN\fR | \-\-all] [\-\-pinned\-too] [\-y]
+Bulk-delete history. Pins survive unless \-\-pinned\-too is given.
+The database is vacuumed afterwards.
+.TP
+.BR pause ", " resume
+Temporarily stop/restart recording (privacy mode).
+.TP
+.B status
+Show daemon state, clipboard backend, and database statistics.
+.TP
+.B gui
+Open the GTK4 search popup: type to filter, click to select, Enter or
+double-click copies, Ctrl+P pins, Del deletes, Esc closes. Ctrl+S opens
+selection mode for bulk pin/unpin/delete (Ctrl+A selects all).
+.TP
+.B daemon
+Run the clipboard watcher in the foreground.
+.TP
+.B setup [\-\-hotkey \fIBINDING\fR]
+Enable and start the systemd user service; optionally register a GNOME
+shortcut for the GUI, e.g. \-\-hotkey '<Control><Alt>v'.
+.TP
+.B teardown
+Remove the service and hotkey. Your history is kept.
+.SH PRIVACY
+Clipboard contents flagged by password managers (the
+x\-kde\-passwordManagerHint MIME hint, set by KeePassXC and others) are
+never recorded. Regular expressions in the configuration file can
+exclude further content. Use
+.B deja pause
+before copying anything you do not want remembered.
+.SH FILES
+.TP
+.I ~/.local/share/deja/deja.db
+The history database (SQLite).
+.TP
+.I ~/.config/deja/config.toml
+Optional configuration: max_entries, max_bytes, min_chars,
+ignore_patterns (list of regexes).
+.SH ENVIRONMENT
+.TP
+.B DEJA_DB
+Override the database path.
+.SH SEE ALSO
+.BR wl-clipboard (1),
+.BR xclip (1)

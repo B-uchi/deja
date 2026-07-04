@@ -1,0 +1,10 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME = deja
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_auto_test:
+	HOME=$(CURDIR)/debian/tmp-test-home python3 test_deja.py
+	rm -rf $(CURDIR)/debian/tmp-test-home

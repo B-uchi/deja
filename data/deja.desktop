@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=deja
+GenericName=Clipboard History
+Comment=The clipboard time machine — search everything you've ever copied
+Exec=deja gui
+Icon=edit-paste-symbolic
+Terminal=false
+Categories=Utility;GTK;
+Keywords=clipboard;history;paste;copy;manager;
+StartupNotify=true

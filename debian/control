@@ -1,0 +1,28 @@
+Source: deja
+Section: utils
+Priority: optional
+Maintainer: Ibuchukwu <ibumeano@gmail.com>
+Build-Depends: debhelper-compat (= 13),
+               dh-python,
+               python3-all,
+               python3-setuptools,
+               pybuild-plugin-pyproject
+Standards-Version: 4.6.2
+Homepage: https://github.com/B-uchi/deja
+Rules-Requires-Root: no
+
+Package: deja
+Architecture: all
+Depends: ${python3:Depends},
+         ${misc:Depends}
+Recommends: python3-gi, gir1.2-gtk-4.0, wl-clipboard
+Suggests: xclip, gir1.2-adw-1
+Description: clipboard time machine - searchable clipboard history
+ deja records everything you copy into a local SQLite database and makes
+ it instantly searchable from the command line or a GTK4 popup.
+ .
+ A lightweight daemon watches the clipboard (event-driven on Wayland,
+ polling on X11), deduplicates entries, and prunes old history. Entries
+ can be pinned, restored to the clipboard, or purged. Content flagged by
+ password managers is never recorded, and recording can be paused at any
+ time. All data stays on the local machine.

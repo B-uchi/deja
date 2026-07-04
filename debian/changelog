@@ -1,0 +1,41 @@
+deja (0.2.0) noble; urgency=medium
+
+  * GUI overhaul: search moves into the header bar, card-style list,
+    proper empty state, native GNOME styling via libadwaita when present.
+  * Single click now only selects; Enter or double-click copies and
+    closes (pinning after a click no longer fights the window).
+  * New selection mode (Ctrl+S or header toggle): checkboxes plus an
+    action bar for bulk pin/unpin/delete; Ctrl+A selects all.
+  * Type-anywhere search (keystrokes route to the search field).
+
+ -- Ibuchukwu <ibumeano@gmail.com>  Sat, 04 Jul 2026 12:00:00 +0100
+
+deja (0.1.1) noble; urgency=medium
+
+  * Fix the flashing "unknown" window on GNOME: never poll with wl-paste
+    on Wayland (each read opened a transient focus-stealing window on
+    compositors without the data-control protocol).
+  * New native Wayland data-control watcher (ext-data-control-v1 and
+    zwlr_data_control_v1) — event-driven and windowless on Sway, KDE,
+    and other compositors that ship the protocol; no wl-clipboard needed.
+  * New XWayland-bridge watcher for GNOME: event-driven via GDK/XFixes
+    on the X11 clipboard, which Mutter mirrors in both directions.
+  * The daemon now serves a control socket; `deja copy` and the GUI set
+    the clipboard through it (windowless, and content survives exit).
+  * External clipboard tools demoted to optional fallbacks
+    (Recommends: wl-clipboard, Suggests: xclip).
+
+ -- Ibuchukwu <ibumeano@gmail.com>  Sat, 04 Jul 2026 10:30:00 +0100
+
+deja (0.1.0) noble; urgency=medium
+
+  * Initial release.
+  * Clipboard daemon: event-driven on Wayland (wl-paste --watch) with
+    automatic polling fallback on X11 / older compositors.
+  * SQLite + FTS5 storage with dedupe, pinning, pruning, and purge.
+  * CLI: list, find, show, copy, pin, rm, purge, pause/resume, status.
+  * GTK4 search popup (deja gui).
+  * systemd user service and optional GNOME hotkey via deja setup.
+  * Password-manager clipboard hints are never recorded.
+
+ -- Ibuchukwu <ibumeano@gmail.com>  Sat, 04 Jul 2026 09:00:00 +0100

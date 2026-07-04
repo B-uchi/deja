@@ -1,0 +1,2 @@
+data/deja.desktop usr/share/applications
+data/deja.service usr/lib/systemd/user

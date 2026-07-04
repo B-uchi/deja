@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deja"
+version = "0.2.0"
+description = "The clipboard time machine — everything you copy, searchable forever"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+authors = [{ name = "Ibuchukwu", email = "ibumeano@gmail.com" }]
+keywords = ["clipboard", "history", "clipboard-manager", "wayland", "gtk4"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Environment :: X11 Applications :: GTK",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: Desktop Environment",
+    "Topic :: Utilities",
+]
+
+[project.urls]
+Homepage = "https://github.com/B-uchi/deja"
+Issues = "https://github.com/B-uchi/deja/issues"
+
+[project.scripts]
+deja = "deja.cli:main"
+
+[tool.setuptools]
+packages = ["deja"]

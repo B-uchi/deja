@@ -1,0 +1,13 @@
+[Unit]
+Description=deja — clipboard time machine daemon
+Documentation=man:deja(1)
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/deja daemon
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target

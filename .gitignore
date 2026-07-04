@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+
+# Debian build artifacts
+debian/deja/
+debian/.debhelper/
+debian/files
+debian/*.substvars
+debian/*.debhelper
+debian/*.debhelper.log
+debian/debhelper-build-stamp
+.pybuild/
+
+# Local junk
+*.db
+*.db-wal
+*.db-shm
+
+PACKAGING.md
